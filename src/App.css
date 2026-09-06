@@ -1,36 +1,204 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-body{
+
+body {
+  margin: 0;
+  padding: 0;
   background-color: black;
   color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
-.content, .dashboard{
-  /* background-color: tomato; */
-  background-color: rgb(198, 152, 52);
-  width: 70vw;
-  height: 70vh;
-  border-radius: 5px;
-  border: 2px solid white;
+
+h1 {
+  color: black;
+  margin: 0;
+  padding: 0;
 }
-/* .save{
-  margin-top: 30px;
-} */
+
+h2 {
+  color: white;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 1rem 0;
+}
+
+/* ---------------- Taskbar (Navbar) ---------------- */
+.taskbar {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px) brightness(1.1);
+  -webkit-backdrop-filter: blur(14px) brightness(1.1);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0.5px rgba(255, 255, 255, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 60px;
+  padding: 0.5rem 1.5rem;
+  margin: 0 auto 1.5rem auto;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+}
+
+ul.tskbar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 600;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s, text-shadow 0.2s;
+}
+
+.nav-link:hover {
+  opacity: 0.85;
+}
+
+.nav-link.active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.draw {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  min-width: 80px;
+  height: 36px;
+  padding: 0 1rem;
+  margin: 0;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  background-color: rgb(210, 0, 0);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* ---------------- Writing Component ---------------- */
+.content {
+  background-color: rgb(198, 152, 52);
+  width: 92%;
+  max-width: 750px;
+  min-height: 460px;
+  border-radius: 8px;
+  border: 2px solid white;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
 .title {
   background-color: wheat;
-  height: 50px;
+  width: 100%;
+  height: 48px;
   border-radius: 5px;
   border: none;
-  padding-left: 10px;
-  font-size: 20px;
+  padding: 0 14px;
+  font-size: 1.2rem;
+  font-weight: 500;
   color: black;
+  outline: none;
 }
+
+textarea {
+  width: 100%;
+  flex: 1;
+  min-height: 240px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+  outline: none;
+  padding: 1rem;
+  font-size: 1.15rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.save {
+  width: 180px;
+  max-width: 80%;
+  height: 42px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.save:hover {
+  background-color: rgb(210, 0, 0);
+}
+
+.save:active {
+  transform: scale(0.96);
+}
+
+/* ---------------- Read (Dashboard) Component ---------------- */
+.read-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .dashboard {
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(14px) brightness(1.1);
@@ -38,209 +206,382 @@ body{
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: inset 0 0 0.5px rgba(255, 255, 255, 0.4),
-              0 8px 24px rgba(0, 0, 0, 0.2);
-  
-  width: 1000px;
+    0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 92%;
+  max-width: 900px;
   height: auto;
-  margin: 50px auto;         /* center horizontally */
-  padding: 40px;             /* spacing inside the box */
-  font-size: 24px;
+  min-height: 220px;
+  margin: 1.5rem auto;
+  padding: 2.2rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   color: white;
-  white-space: pre-wrap;     /* preserve line breaks */
-  line-height: 2.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.9;
+  text-align: left;
 }
 
-textarea {
-  width: 90%;
-  height: 70%;
-  background-color: transparent;
-  color: white;
-  border: none;
-  outline: none;
-  padding: 1rem;
-  font-size: 1.2rem;
-}
-.read{
-  /* background-color: tomato; */
-  border-radius: 5px;
-  
-}
-button {
-  width: 40%;
-  height: 10%;
-  margin-top: 30px;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.taskbar {
-  background: rgba(255, 255, 255, 0.12);              /* light translucent layer */
-  backdrop-filter: blur(14px) brightness(1.1);        /* subtle blur with brightness */
-  -webkit-backdrop-filter: blur(14px) brightness(1.1);
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.3);         /* crisp edge shimmer */
-  box-shadow: inset 0 0 0.5px rgba(255, 255, 255, 0.4), /* inner glow like dew */
-              0 8px 24px rgba(0, 0, 0, 0.2);          /* soft drop shadow */
-  display: flex;
-  justify-content: space-between;
-  width: 1000px;
-  height: 60px;
-  margin-left: 100px;
-  /* margin-top: 20px; */
-}
-.head{
- width: 50%;
- margin-left: 20px;
-}
-ul{
-  list-style: none;
-  margin-top: 20px;
-  margin-left: 30px;
-  font-size: 30px;
-  display: flex;
-  justify-content: space-between;
-  /* background-color: tomato; */
-  border-radius: 5px;
-}
-.btn{
-  margin-right:20px ;
-  margin-top: 20px;
-  width: 100px;
-  height: 30px;
-  background-color: red;
-  color: white;
-  border-radius: 5px;
-}
-.card{
-  background-color: tomato;
-  border-radius: 20px;
-  width: 400px;
-  height: 500px;
-  overflow: hidden;
-}
-.delete{ 
-  margin-left: 300px;
-  width: 100px;
-}
-.delbtn{
-  width: 70%;
-  height: 30px;
-  background-color: red;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-}
-.card p{
-  padding: 10px;
-  font-size: 20px;
-  color: black;
+.empty-dashboard {
   text-align: center;
 }
 
-.card:hover{
-  color: black;
-  cursor: pointer;
-  scale: 1.1;
+.read-footer,
+.read-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.box{
-  margin-top: 40px;
+
+.read-back-btn {
+  min-width: 130px;
+  height: 38px;
+}
+
+/* ---------------- Home & Cards ---------------- */
+.box {
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1.5rem;
+  width: 100%;
 }
 
-/* css for Draw */
-
-body {
+.card {
+  background-color: tomato;
+  border-radius: 20px;
+  width: 220px;
+  height: 290px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: black;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.card .delete {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.delbtn {
+  padding: 0.25rem 0.75rem;
+  height: 28px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.delbtn:hover {
+  background-color: rgb(210, 0, 0);
+}
+
+.card-title {
+  color: black;
+  margin: 0.4rem 0;
+  padding: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.card p.preview {
+  margin: 0;
+  padding: 0.5rem 0.2rem;
+  font-size: 1rem;
+  color: #222;
+  text-align: left;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+}
+
+.empty-state {
+  margin: 3.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.empty-text {
+  font-size: 1.5rem;
+  color: #bbb;
+  margin: 0;
+}
+
+.create-btn {
+  min-width: 150px;
+  height: 42px;
+  font-size: 1.1rem;
+}
+
+/* ---------------- Draw Component ---------------- */
+.draw-page {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-h1 {
-  color: black;
+#btn {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 1000px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  padding: 12px 0 50px 0;
+  align-items: center;
+  border-radius: 15px;
+  padding: 10px;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-h2 {
+#pens {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: auto;
+}
+
+.drbtn {
+  font-size: 10px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  cursor: pointer;
   color: white;
-  font-size: 30px;
+  font-weight: bold;
+  min-width: 55px;
+  height: 38px;
+  padding: 0 8px;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, border-color 0.2s, box-shadow 0.2s;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.drbtn:hover {
+  transform: scale(1.06);
+}
+
+.drbtn.active-pen {
+  border-color: white;
+  transform: scale(1.08);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+#eraser {
+  background-color: white;
+  color: black;
+  text-shadow: none;
+  border: 1px solid #aaa;
+}
+
+.brush-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.brush-controls label {
+  color: white;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.brush-controls input[type="range"] {
+  cursor: pointer;
+  accent-color: red;
+  width: 100px;
+  height: 6px;
+  margin: 0;
 }
 
 #main {
   background-color: wheat;
-  width: 1200px;
-  height: 750px;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 12px;
+  padding: 12px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 #space {
-  width: 1150px;
-  height: 650px;
-  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid black;
   background-color: white;
+  cursor: crosshair;
+  display: block;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-#btn {
-  margin-top: 40px;
-  width: 1000px;
-  height: 60px;
+.clear-btn {
+  background-color: #444;
+  color: white;
+  border: 1px solid #777;
+}
+
+.clear-btn:hover {
+  background-color: #666;
+}
+
+/* ---------------- 404 Not Found ---------------- */
+.not-found-container {
   display: flex;
-  justify-content: space-around;
-  /* background-color: palevioletred; */
-  border-radius: 15px;
-  padding: 7px;
-  gap: 12px;
-}
-#pens{
-  width: 1000px;
-}
-.drbtn {
-  font-size: 10px;
-  border-radius: 12%;
-  border: none;
-  cursor: pointer;
-  color: white;
-  font-weight: bold;
-  width: 60px;
-  margin-left: 10px;
-  height: 50px;
-  margin-bottom: 30px;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  padding: 1rem;
 }
 
-#cursor {
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
-  position: absolute;
-  z-index: 9;
+.not-found-img {
+  width: 90%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
-input{
-  margin-top: 30px;
-  width: 30%;
-  height: 40px;
-  border-radius: 5px;
-  border: none;
-  padding-left: 10px;
-  font-size: 20px;
-  color: black;
+
+/* ---------------- Responsive Breakpoints ---------------- */
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem 0.5rem;
+  }
+
+  .taskbar {
+    padding: 0.5rem 1rem;
+    min-height: 52px;
+  }
+
+  ul.tskbar {
+    gap: 1.1rem;
+    font-size: 1.25rem;
+  }
+
+  .btn {
+    height: 32px;
+    font-size: 0.9rem;
+    min-width: 70px;
+  }
+
+  .content {
+    width: 96%;
+    padding: 1.2rem;
+    min-height: 420px;
+  }
+
+  .dashboard {
+    width: 96%;
+    padding: 1.4rem;
+    font-size: 1.15rem;
+  }
+
+  .box {
+    gap: 1rem;
+  }
+
+  .card {
+    width: calc(50% - 0.75rem);
+    min-width: 140px;
+    height: 250px;
+    padding: 0.8rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card p.preview {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 5;
+  }
+
+  #main {
+    padding: 8px;
+  }
 }
-label {
-  margin-top: 40px;
-  color: white;
-} 
+
+@media (max-width: 480px) {
+  .taskbar {
+    padding: 0.4rem 0.75rem;
+    border-radius: 10px;
+  }
+
+  ul.tskbar {
+    gap: 0.85rem;
+    font-size: 1.05rem;
+  }
+
+  .btn {
+    height: 30px;
+    font-size: 0.85rem;
+    min-width: 60px;
+    padding: 0 0.6rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 320px;
+    height: 230px;
+  }
+
+  .drbtn {
+    min-width: 46px;
+    height: 32px;
+    font-size: 9px;
+    padding: 0 4px;
+  }
+
+  .brush-controls {
+    margin-top: 4px;
+  }
+
+  .brush-controls input[type="range"] {
+    width: 80px;
+  }
+
+  .dashboard {
+    padding: 1rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+}
